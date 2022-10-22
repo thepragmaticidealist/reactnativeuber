@@ -4,10 +4,13 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 
 import { GOOGLE_MAPS_API_KEY } from '@env';
 import { useDispatch } from 'react-redux';
-import { setOrigin, setDestination } from '../slices/navSlice';
+import { setDestination } from '../slices/navSlice';
+import { useNavigation } from '@react-navigation/native';
+
 
 const NavigateCard = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   return (
     <SafeAreaView className="flex-1 bg-white">
@@ -44,6 +47,8 @@ const NavigateCard = () => {
                 location: details.geometry.location,
                 description: data.description
               }))
+
+              navigation.navigate("RideOptionsCard")
             }}
               enablePoweredByContainer={false}
               nearbyPlacesAPI='GooglePlacesSearch'
