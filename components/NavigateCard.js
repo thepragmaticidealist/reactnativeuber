@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView } from 'react-native'
+import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
@@ -6,6 +6,8 @@ import { GOOGLE_MAPS_API_KEY } from '@env';
 import { useDispatch } from 'react-redux';
 import { setDestination } from '../slices/navSlice';
 import { useNavigation } from '@react-navigation/native';
+import NavFavourites from './NavFavourites';
+import { Icon } from 'react-native-elements';
 
 
 const NavigateCard = () => {
@@ -58,6 +60,18 @@ const NavigateCard = () => {
               isRowScrollable={true}
             />
         </View>
+          <NavFavourites />
+      </View>
+      <View className="flex-row justify-evenly mt-10 py-2 border-top border-gray-100 mt-">
+        <TouchableOpacity className="bg-black flex-row w-24 px-4 py-3 rounded-full justify-between" onPress={() => navigation.navigate("RideOptionsCard")}>
+          <Icon name="car" type="font-awesome" color="white" size={16} />
+          <Text className="text-white">Rides</Text>
+        </TouchableOpacity>
+        <TouchableOpacity className="bg-black flex-row w-24 px-4 py-3 rounded-full justify-between">
+          <Icon name="fast-food-outline" type="ionicon" color="white" size={16} />
+          <Text className="text-white">Eats</Text>
+        </TouchableOpacity>
+            
       </View>
     </SafeAreaView>
   )
