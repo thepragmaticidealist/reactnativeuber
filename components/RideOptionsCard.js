@@ -45,7 +45,7 @@ const RideOptionsCard = () => {
           onPress={()=> navigation.navigate("NavigateCard")}
         />
       </TouchableOpacity>
-      <Text className="text-center text-lg py-5">Select a Ride - {travelTimeInformation?.distance.text}</Text>
+      <Text className="text-center text-lg py-5">Select a Ride - {travelTimeInformation?.distance?.text}</Text>
     </View>
     <FlatList
       keyExtractor={(item) => item.id}
@@ -55,7 +55,7 @@ const RideOptionsCard = () => {
               <Image style={{width: 100, height: 100, resizeMode: "contain"}} source={{uri: item.image}}/>
               <View className="-ml-6">
                 <Text className="text-xl font-semibold">{item.name}</Text>
-                <Text>{travelTimeInformation?.duration.text} Travel Time</Text>
+                <Text>{travelTimeInformation?.duration?.text} Travel Time</Text>
               </View>
               <Text className="text-xl">
               {
