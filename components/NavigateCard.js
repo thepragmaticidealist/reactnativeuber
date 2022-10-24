@@ -43,7 +43,7 @@ const NavigateCard = () => {
             fetchDetails={true}
             onPress={(data, details = null) => {
               // 'details' is provided when fetchDetails = true
-              console.log('DATA',data,'DETAILS >>>>>', details.geometry);
+              // console.log('DATA',data,'DETAILS >>>>>', details.geometry);
 
               dispatch(setDestination({
                 location: details.geometry.location,

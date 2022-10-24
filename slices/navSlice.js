@@ -13,7 +13,7 @@ const navSlice = createSlice({
       state.destination = action.payload
     }, 
     setTravelTimeInformation(state, action) {
-      state.setTravelTimeInformation = action.payload
+      state.travelTimeInformation = action.payload
     }
   },
 })

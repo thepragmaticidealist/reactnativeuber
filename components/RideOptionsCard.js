@@ -2,12 +2,15 @@ import { View, Text, SafeAreaView, TouchableOpacity, FlatList, TextComponent, Im
 import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { Icon } from 'react-native-elements';
+import { useSelector } from 'react-redux';
+import { selectTravelTimeInformation } from '../slices/navSlice';
 
 
 const RideOptionsCard = () => {
   const navigation = useNavigation();
   const [selected, setSelected] = useState(null);
-  console.log('Selected', selected)
+  const travelTimeInformation = useSelector(selectTravelTimeInformation);
+  console.log('****',travelTimeInformation)
 
   const data = [
     {
@@ -29,6 +32,7 @@ const RideOptionsCard = () => {
       image: 'https://links.papareact.com/7pf'
     },
   ]
+  const SURGE_CHARGE_RATE = 1.5;
 
   return (
     <SafeAreaView className="bg-white flex-grow">
@@ -41,7 +45,7 @@ const RideOptionsCard = () => {
           onPress={()=> navigation.navigate("NavigateCard")}
         />
       </TouchableOpacity>
-      <Text className="text-center text-lg py-5">Select a Ride</Text>
+      <Text className="text-center text-lg py-5">Select a Ride - {travelTimeInformation?.distance.text}</Text>
     </View>
     <FlatList
       keyExtractor={(item) => item.id}
@@ -51,9 +55,19 @@ const RideOptionsCard = () => {
               <Image style={{width: 100, height: 100, resizeMode: "contain"}} source={{uri: item.image}}/>
               <View className="-ml-6">
                 <Text className="text-xl font-semibold">{item.name}</Text>
-                <Text>Travel Time ...</Text>
+                <Text>{travelTimeInformation?.duration.text} Travel Time</Text>
               </View>
-              <Text className="text-xl">$99</Text>
+              <Text className="text-xl">
+              {
+                new Intl.NumberFormat('en-eu', {
+                  style: 'currency',
+                  currency: 'EUR'
+                }).format(
+                  travelTimeInformation?.duration.value * SURGE_CHARGE_RATE * item.multiplier /100
+                )
+
+              }
+              </Text>
             </TouchableOpacity>
         )}
     />

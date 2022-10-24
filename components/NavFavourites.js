@@ -1,15 +1,8 @@
 import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
 import { Icon } from 'react-native-elements';
-import { useDispatch } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
-import { setOrigin } from '../slices/navSlice';
-
-
 
 const NavFavourites = () => {
-  const dispatch = useDispatch();
-  const navigation = useNavigation();
 
   const data = [
     {
